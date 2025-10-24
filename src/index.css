@@ -1,1 +1,4 @@
 @import "tailwindcss";
+
+html { scroll-behavior: smooth; }
+a, button { transition: all .15s ease-in-out; }
