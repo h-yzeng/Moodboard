@@ -26,7 +26,7 @@ export default function LandingPage() {
               }}
             >
               <span className="text-xl">✍️</span>
-              Log Your First Mood
+              Log Your Mood Today
             </button>
             <button
               onClick={() => window.navigate('/trends')}
