@@ -185,7 +185,7 @@ export default function DailyPage() {
                 <label className="block text-2xl font-bold text-gray-900 mb-6 text-center">
                   Select Your Mood
                 </label>
-                <div className="grid grid-cols-10 gap-3">
+                <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-10 gap-3">
                   {moods.map((mood) => (
                     <button
                       key={mood.value}
