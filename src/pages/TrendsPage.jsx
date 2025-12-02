@@ -193,8 +193,8 @@ export default function TrendsPage() {
           </div>
         ) : (
           <>
-            {/* View Mode Toggle */}
-            <div className="flex justify-center gap-4 mb-6">
+            {/* View Mode Toggle and Filters */}
+            <div className="flex flex-wrap justify-center items-center gap-4 mb-6">
               <button
                 onClick={() => setViewMode('stats')}
                 className={`px-6 py-3 rounded-full font-bold transition-all duration-200 ${
@@ -215,26 +215,26 @@ export default function TrendsPage() {
               >
                 📅 Calendar
               </button>
-            </div>
-
-            {/* Filters Section - Only show in stats view */}
-            {viewMode === 'stats' && (
-              <div className="mb-8">
+              {viewMode === 'stats' && (
                 <button
                   onClick={() => setShowFilters(!showFilters)}
-                  className="mx-auto block px-6 py-3 rounded-full bg-white border-4 border-purple-200 text-gray-900 font-bold hover:bg-purple-50 transition-all duration-200"
+                  className="px-6 py-3 rounded-full bg-white border-4 border-purple-200 text-gray-900 font-bold hover:bg-purple-50 hover:scale-105 transition-all duration-200"
                 >
                   {showFilters ? '🔽 Hide Filters' : '🔼 Show Filters'}
                 </button>
+              )}
+            </div>
 
-                {showFilters && (
-                  <div 
-                    className="mt-6 rounded-3xl p-6 shadow-xl border-4 border-white/50"
-                    style={{
-                      background: 'linear-gradient(to bottom right, #fce7f3, #e9d5ff)'
-                    }}
-                  >
-                    {/* Time Range Filter */}
+            {/* Filters Section Content */}
+            {viewMode === 'stats' && showFilters && (
+              <div className="mb-8">
+                <div
+                  className="rounded-3xl p-6 shadow-xl border-4 border-white/50 animate-fade-in"
+                  style={{
+                    background: 'linear-gradient(to bottom right, #fce7f3, #e9d5ff)'
+                  }}
+                >
+                  {/* Time Range Filter */}
                     <div className="mb-6">
                       <label className="block text-lg font-bold text-gray-900 mb-3">Time Range</label>
                       <div className="flex flex-wrap justify-center gap-3">
@@ -338,14 +338,13 @@ export default function TrendsPage() {
                         ))}
                       </div>
                     </div>
-                  </div>
-                )}
+                </div>
               </div>
             )}
 
             {viewMode === 'calendar' ? (
               /* Calendar View */
-              <div>
+              <div className="animate-fade-in">
                 {/* Calendar Header */}
                 <div className="flex justify-between items-center mb-6">
                   <button
@@ -357,11 +356,11 @@ export default function TrendsPage() {
                         setSelectedMonth(selectedMonth - 1);
                       }
                     }}
-                    className="px-4 py-2 rounded-full bg-white border-2 border-purple-200 font-bold hover:bg-purple-50"
+                    className="px-5 py-3 rounded-full bg-white border-4 border-purple-200 font-bold hover:bg-purple-50 hover:scale-105 hover:shadow-lg transition-all duration-200"
                   >
                     ← Previous
                   </button>
-                  <h3 className="text-2xl font-black text-gray-900">
+                  <h3 className="text-2xl md:text-3xl font-black text-gray-900 px-4">
                     {monthNames[selectedMonth]} {selectedYear}
                   </h3>
                   <button
@@ -373,7 +372,7 @@ export default function TrendsPage() {
                         setSelectedMonth(selectedMonth + 1);
                       }
                     }}
-                    className="px-4 py-2 rounded-full bg-white border-2 border-purple-200 font-bold hover:bg-purple-50"
+                    className="px-5 py-3 rounded-full bg-white border-4 border-purple-200 font-bold hover:bg-purple-50 hover:scale-105 hover:shadow-lg transition-all duration-200"
                   >
                     Next →
                   </button>
@@ -460,47 +459,51 @@ export default function TrendsPage() {
               /* Statistics View */
               <>
                 {/* Stats Overview */}
-                <div className="grid gap-6 md:grid-cols-4 mb-10">
-                  <div 
-                    className="rounded-2xl p-8 text-center shadow-lg border-4 border-white/60 hover:scale-105 transition-transform"
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-10">
+                  <div
+                    className="rounded-2xl p-8 text-center shadow-lg border-4 border-white/60 hover:scale-105 hover:shadow-2xl transition-all duration-200 animate-fade-in cursor-pointer"
                     style={{
-                      background: 'linear-gradient(to bottom right, #fce7f3, #fbcfe8)'
+                      background: 'linear-gradient(to bottom right, #fce7f3, #fbcfe8)',
+                      animationDelay: '0s'
                     }}
                   >
-                    <div className="text-5xl mb-3">📈</div>
+                    <div className="text-5xl mb-3 animate-float" style={{animationDelay: '0s'}}>📈</div>
                     <div className="text-4xl font-black text-gray-900 mb-2">{filteredEntries.length}</div>
                     <div className="text-lg font-semibold text-gray-700">Total Entries</div>
                   </div>
 
-                  <div 
-                    className="rounded-2xl p-8 text-center shadow-lg border-4 border-white/60 hover:scale-105 transition-transform"
+                  <div
+                    className="rounded-2xl p-8 text-center shadow-lg border-4 border-white/60 hover:scale-105 hover:shadow-2xl transition-all duration-200 animate-fade-in cursor-pointer"
                     style={{
-                      background: 'linear-gradient(to bottom right, #dbeafe, #bfdbfe)'
+                      background: 'linear-gradient(to bottom right, #dbeafe, #bfdbfe)',
+                      animationDelay: '0.1s'
                     }}
                   >
-                    <div className="text-5xl mb-3">{mostCommonMood ? getMoodEmoji(mostCommonMood) : '😐'}</div>
+                    <div className="text-5xl mb-3 animate-float" style={{animationDelay: '0.5s'}}>{mostCommonMood ? getMoodEmoji(mostCommonMood) : '😐'}</div>
                     <div className="text-2xl font-black text-gray-900 mb-2 capitalize">{mostCommonMood || 'N/A'}</div>
                     <div className="text-lg font-semibold text-gray-700">Most Common</div>
                   </div>
 
-                  <div 
-                    className="rounded-2xl p-8 text-center shadow-lg border-4 border-white/60 hover:scale-105 transition-transform"
+                  <div
+                    className="rounded-2xl p-8 text-center shadow-lg border-4 border-white/60 hover:scale-105 hover:shadow-2xl transition-all duration-200 animate-fade-in cursor-pointer"
                     style={{
-                      background: 'linear-gradient(to bottom right, #e9d5ff, #d8b4fe)'
+                      background: 'linear-gradient(to bottom right, #e9d5ff, #d8b4fe)',
+                      animationDelay: '0.2s'
                     }}
                   >
-                    <div className="text-5xl mb-3">⭐</div>
+                    <div className="text-5xl mb-3 animate-float" style={{animationDelay: '1s'}}>⭐</div>
                     <div className="text-4xl font-black text-gray-900 mb-2">{averageRating}/10</div>
                     <div className="text-lg font-semibold text-gray-700">Average Intensity</div>
                   </div>
 
-                  <div 
-                    className="rounded-2xl p-8 text-center shadow-lg border-4 border-white/60 hover:scale-105 transition-transform"
+                  <div
+                    className="rounded-2xl p-8 text-center shadow-lg border-4 border-white/60 hover:scale-105 hover:shadow-2xl transition-all duration-200 animate-fade-in cursor-pointer"
                     style={{
-                      background: 'linear-gradient(to bottom right, #fef9c3, #fde047)'
+                      background: 'linear-gradient(to bottom right, #fef9c3, #fde047)',
+                      animationDelay: '0.3s'
                     }}
                   >
-                    <div className="text-5xl mb-3">🔥</div>
+                    <div className="text-5xl mb-3 animate-float" style={{animationDelay: '1.5s'}}>🔥</div>
                     <div className="text-4xl font-black text-gray-900 mb-2">
                       {entries.filter(e => {
                         const entryDate = new Date(e.date);
