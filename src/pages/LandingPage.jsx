@@ -20,7 +20,7 @@ export default function LandingPage() {
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-5">
             <button
               onClick={() => window.navigate('/daily')}
-              className="inline-flex items-center gap-2 justify-center rounded-full px-8 py-4 text-white text-lg font-bold shadow-lg hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-purple-300"
+              className="inline-flex items-center gap-2 justify-center rounded-full px-8 py-4 text-white text-lg font-bold shadow-lg hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-purple-300 animate-pulse-glow"
               style={{
                 background: 'linear-gradient(to right, #c084fc, #f472b6)'
               }}
@@ -39,12 +39,12 @@ export default function LandingPage() {
 
           {/* Emoji row */}
           <div className="mt-12 flex flex-wrap items-center justify-center gap-10 text-7xl">
-            <span aria-label="neutral" role="img" className="hover:scale-125 transition-transform cursor-pointer" title="Neutral">😐</span>
-            <span aria-label="happy" role="img" className="hover:scale-125 transition-transform cursor-pointer" title="Happy">😊</span>
-            <span aria-label="sad" role="img" className="hover:scale-125 transition-transform cursor-pointer" title="Sad">😢</span>
-            <span aria-label="cool" role="img" className="hover:scale-125 transition-transform cursor-pointer" title="Cool">😎</span>
-            <span aria-label="angry" role="img" className="hover:scale-125 transition-transform cursor-pointer" title="Angry">😡</span>
-            <span aria-label="sleepy" role="img" className="hover:scale-125 transition-transform cursor-pointer" title="Sleepy">😴</span>
+            <span aria-label="neutral" role="img" className="hover:scale-125 transition-transform cursor-pointer animate-float" style={{animationDelay: '0s'}} title="Neutral">😐</span>
+            <span aria-label="happy" role="img" className="hover:scale-125 transition-transform cursor-pointer animate-float" style={{animationDelay: '0.5s'}} title="Happy">😊</span>
+            <span aria-label="sad" role="img" className="hover:scale-125 transition-transform cursor-pointer animate-float" style={{animationDelay: '1s'}} title="Sad">😢</span>
+            <span aria-label="cool" role="img" className="hover:scale-125 transition-transform cursor-pointer animate-float" style={{animationDelay: '1.5s'}} title="Cool">😎</span>
+            <span aria-label="angry" role="img" className="hover:scale-125 transition-transform cursor-pointer animate-float" style={{animationDelay: '2s'}} title="Angry">😡</span>
+            <span aria-label="sleepy" role="img" className="hover:scale-125 transition-transform cursor-pointer animate-float" style={{animationDelay: '2.5s'}} title="Sleepy">😴</span>
           </div>
         </div>
       </section>

@@ -9,6 +9,7 @@ export default function DailyPage() {
   const [entries, setEntries] = useState([]);
   const [viewMode, setViewMode] = useState('recent');
   const [selectedEntry, setSelectedEntry] = useState(null);
+  const [showHistory, setShowHistory] = useState(false);
 
   const moods = [
     { emoji: '😊', label: 'Happy', value: 'happy', color: '#FFD6A5' },
@@ -171,9 +172,9 @@ export default function DailyPage() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-7 w-full">
+        <div className={`grid grid-cols-1 gap-7 w-full transition-all duration-500 ${showHistory ? 'lg:grid-cols-10' : ''}`}>
           {/* Mood Entry Form */}
-          <div className="lg:col-span-7">
+          <div className={`transition-all duration-500 ${showHistory ? 'lg:col-span-7' : 'lg:col-span-1 max-w-5xl mx-auto'}`}>
             <div 
               className="rounded-3xl p-8 shadow-xl border-4 border-white/50"
               style={{
@@ -185,20 +186,20 @@ export default function DailyPage() {
                 <label className="block text-2xl font-bold text-gray-900 mb-6 text-center">
                   Select Your Mood
                 </label>
-                <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-10 gap-3">
+                <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-3 max-w-full">
                   {moods.map((mood) => (
                     <button
                       key={mood.value}
                       onClick={() => setSelectedMood(mood.value)}
-                      className={`p-4 rounded-2xl border-4 transition-all duration-200 ${
+                      className={`p-3 rounded-2xl border-4 transition-all duration-200 flex flex-col items-center justify-center min-h-[110px] ${
                         selectedMood === mood.value
                           ? 'border-purple-400 shadow-xl scale-110 bg-white'
                           : 'border-white/60 shadow-lg hover:scale-105 bg-white/80'
                       }`}
                       style={selectedMood === mood.value ? { backgroundColor: mood.color } : {}}
                     >
-                      <div className="text-5xl mb-2">{mood.emoji}</div>
-                      <div className="text-xs font-semibold text-gray-800">{mood.label}</div>
+                      <div className="text-4xl md:text-5xl mb-1">{mood.emoji}</div>
+                      <div className="text-xs font-semibold text-gray-800 text-center leading-tight">{mood.label}</div>
                     </button>
                   ))}
                 </div>
@@ -314,17 +315,30 @@ export default function DailyPage() {
                   Save Mood Entry
                 </button>
               </div>
+
+              {/* History Toggle Button */}
+              <div className="mt-6 text-center">
+                <button
+                  onClick={() => setShowHistory(!showHistory)}
+                  className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-white/80 border-3 border-purple-300 text-gray-900 text-lg font-bold shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-purple-200"
+                >
+                  <span className="text-xl">{showHistory ? '📝' : '📋'}</span>
+                  {showHistory ? 'Hide Past Entries' : `View Past Entries ${entries.length > 0 ? `(${entries.length})` : ''}`}
+                  <span className="text-xl">{showHistory ? '◀' : '▶'}</span>
+                </button>
+              </div>
             </div>
           </div>
 
           {/* Entries History Sidebar */}
-          <div className="lg:col-span-3">
-            <div 
-              className="rounded-3xl p-6 shadow-xl border-4 border-white/50 sticky top-4"
-              style={{
-                background: 'linear-gradient(to bottom right, #fce7f3, #e9d5ff)'
-              }}
-            >
+          {showHistory && (
+            <div className="lg:col-span-3 animate-fade-in">
+              <div
+                className="rounded-3xl p-6 shadow-xl border-4 border-white/50 sticky top-4"
+                style={{
+                  background: 'linear-gradient(to bottom right, #fce7f3, #e9d5ff)'
+                }}
+              >
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-xl font-black text-gray-900">
                   Your Entries 📝
@@ -414,7 +428,8 @@ export default function DailyPage() {
                 </div>
               )}
             </div>
-          </div>
+            </div>
+          )}
         </div>
       </section>
     </main>

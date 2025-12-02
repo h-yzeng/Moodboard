@@ -1,4 +1,4 @@
-export default function Header() {
+export default function Header({ currentPage = '/' }) {
   return (
     <>
       <a 
@@ -25,23 +25,35 @@ export default function Header() {
           <p className="text-sm font-medium text-gray-700 mt-1">Your Daily Emotional Check-in 💭</p>
           
           <nav className="mt-4 flex justify-center gap-4 text-base" aria-label="Main navigation">
-            <button 
+            <button
               onClick={() => window.navigate('/')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-yellow-100 border-4 border-white/60 text-gray-900 font-semibold shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 hover:bg-yellow-200 transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-4 text-gray-900 font-semibold shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 hover:bg-yellow-200 transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 ${
+                currentPage === '/'
+                  ? 'bg-yellow-300 border-yellow-400 scale-105'
+                  : 'bg-yellow-100 border-white/60'
+              }`}
             >
               <span className="text-lg">🏠</span>
               Home
             </button>
-            <button 
+            <button
               onClick={() => window.navigate('/daily')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-purple-100 border-4 border-white/60 text-gray-900 font-semibold shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 hover:bg-purple-200 transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-4 text-gray-900 font-semibold shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 hover:bg-purple-200 transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 ${
+                currentPage === '/daily'
+                  ? 'bg-purple-300 border-purple-400 scale-105'
+                  : 'bg-purple-100 border-white/60'
+              }`}
             >
               <span className="text-lg">✍️</span>
               Daily
             </button>
-            <button 
+            <button
               onClick={() => window.navigate('/trends')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-pink-100 border-4 border-white/60 text-gray-900 font-semibold shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 hover:bg-pink-200 transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2"
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-4 text-gray-900 font-semibold shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 hover:bg-pink-200 transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 ${
+                currentPage === '/trends'
+                  ? 'bg-pink-300 border-pink-400 scale-105'
+                  : 'bg-pink-100 border-white/60'
+              }`}
             >
               <span className="text-lg">📊</span>
               Trends

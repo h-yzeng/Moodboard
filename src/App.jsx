@@ -20,19 +20,20 @@ export default function App() {
   window.navigate = navigate;
 
   const renderPage = () => {
+    const pageClass = "animate-fade-in";
     switch (currentPage) {
       case '/daily':
-        return <DailyPage />;
+        return <div className={pageClass}><DailyPage /></div>;
       case '/trends':
-        return <TrendsPage />;
+        return <div className={pageClass}><TrendsPage /></div>;
       default:
-        return <LandingPage />;
+        return <div className={pageClass}><LandingPage /></div>;
     }
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900">
-      <Header />
+      <Header currentPage={currentPage} />
       {renderPage()}
       <Footer />
     </div>
