@@ -6,10 +6,6 @@ MoodBoard is a privacy-focused web application that helps users track their emot
 
 MoodBoard allows users to build self-awareness through consistent emotional check-ins. The application features:
 
-- **Daily Mood Logging**: Select from 20 different moods with intensity ratings (1-10)
-- **Rich Context**: Add notes, tags, and quick tags to track what influences your emotions
-- **Trend Analysis**: Visualize mood patterns with statistics and calendar views
-- **Advanced Filtering**: Filter mood data by time range and specific moods
 - **100% Private**: All data is stored locally in your browser - no servers, no accounts, complete privacy
 - **Responsive Design**: Beautiful gradient UI that works seamlessly across all devices
 
@@ -17,22 +13,16 @@ MoodBoard allows users to build self-awareness through consistent emotional chec
 
 #### Daily Entries Page
 
-- 20 mood options with emoji representations
-- Intensity slider (1-10 scale)
-- Optional note-taking for reflection
-- Quick tags for common activities (Work, Family, Friends, etc.)
-- Custom tag support
+- **Daily Mood Logging**: Select from 20 different moods with intensity ratings (1-10)
+- **Rich Context**: Add notes, tags, and quick tags to track what influences your emotions
 - Collapsible entry history with toggle button
 - Success confirmation with smooth animations
 
 #### Trends Page
 
 - **Statistics View**:
-  - Total entries count
-  - Most common mood
-  - Average intensity rating
-  - Weekly activity tracker
-  - Intensity distribution (Low/Moderate/High)
+- **Trend Analysis**: Visualize mood patterns with statistics and calendar views
+- **Advanced Filtering**: Filter mood data by time range and specific moods
   - Detailed mood breakdown with visual bars
   - Top influences from tags
 - **Calendar View**:
