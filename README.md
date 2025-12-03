@@ -145,7 +145,7 @@ MoodBoard allows users to build self-awareness through consistent emotional chec
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/h-yzeng/Moodboard/
 
 # Navigate to project directory
 cd Moodboard
