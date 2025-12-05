@@ -12,17 +12,23 @@ const getSystemReduceMotion = () =>
 export function UserPreferencesProvider({ children }) {
   const [prefs, setPrefs] = useState(() => {
     if (typeof window === 'undefined') {
-      return { reduceMotion: false, highContrast: false, textSize: 'base' };
+      return { reduceMotion: false, textSize: 'base' };
     }
 
     try {
       const stored = window.localStorage.getItem(STORAGE_KEY);
-      if (stored) return JSON.parse(stored);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        return {
+          reduceMotion: parsed.reduceMotion ?? getSystemReduceMotion(),
+          textSize: parsed.textSize || 'base',
+        };
+      }
     } catch (error) {
       console.error('Unable to read user preferences', error);
     }
 
-    return { reduceMotion: getSystemReduceMotion(), highContrast: false, textSize: 'base' };
+    return { reduceMotion: getSystemReduceMotion(), textSize: 'base' };
   });
 
   useEffect(() => {
@@ -38,7 +44,6 @@ export function UserPreferencesProvider({ children }) {
     if (typeof document === 'undefined') return;
     const root = document.documentElement;
     root.dataset.reduceMotion = prefs.reduceMotion ? 'true' : 'false';
-    root.dataset.highContrast = prefs.highContrast ? 'true' : 'false';
     root.dataset.textSize = prefs.textSize || 'base';
   }, [prefs]);
 
@@ -56,7 +61,6 @@ export function UserPreferencesProvider({ children }) {
     () => ({
       prefs,
       toggleReduceMotion: () => setPrefs((prev) => ({ ...prev, reduceMotion: !prev.reduceMotion })),
-      toggleHighContrast: () => setPrefs((prev) => ({ ...prev, highContrast: !prev.highContrast })),
       setTextSize: (size) => setPrefs((prev) => ({ ...prev, textSize: size })),
     }),
     [prefs]

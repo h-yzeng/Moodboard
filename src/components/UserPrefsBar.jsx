@@ -3,7 +3,7 @@ import { useUserPreferences } from '../hooks/useUserPreferences.jsx';
 const focusRing = 'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gray-900/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white';
 
 export function UserPrefsBar() {
-  const { prefs, toggleReduceMotion, toggleHighContrast, setTextSize } = useUserPreferences();
+  const { prefs, toggleReduceMotion, setTextSize } = useUserPreferences();
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-sm font-semibold text-gray-800">
@@ -15,14 +15,6 @@ export function UserPrefsBar() {
           className={`px-3 py-2 rounded-full border-2 ${prefs.reduceMotion ? 'bg-blue-100 border-blue-300 text-blue-900' : 'bg-white border-gray-200 text-gray-800'} shadow-sm transition-colors ${focusRing}`}
         >
           {prefs.reduceMotion ? 'Reduced motion on' : 'Reduced motion off'}
-        </button>
-        <button
-          type="button"
-          onClick={toggleHighContrast}
-          aria-pressed={prefs.highContrast}
-          className={`px-3 py-2 rounded-full border-2 ${prefs.highContrast ? 'bg-black text-white border-black' : 'bg-white border-gray-200 text-gray-800'} shadow-sm transition-colors ${focusRing}`}
-        >
-          {prefs.highContrast ? 'High contrast on' : 'High contrast off'}
         </button>
       </div>
 

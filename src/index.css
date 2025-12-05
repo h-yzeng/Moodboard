@@ -233,30 +233,8 @@ html[data-reduce-motion="true"] * {
   transition-duration: 0.001ms !important;
 }
 
-html[data-text-size="large"] body {
+html[data-text-size="large"] {
   font-size: 18px;
   line-height: 1.6;
 }
 
-html[data-high-contrast="true"] {
-  background: #f8fafc;
-  color: #0f172a;
-}
-
-html[data-high-contrast="true"] body {
-  background: #f8fafc;
-  color: #0f172a;
-}
-
-html[data-high-contrast="true"] .rounded-3xl,
-html[data-high-contrast="true"] .rounded-2xl,
-html[data-high-contrast="true"] .hc-surface {
-  background: #ffffff !important;
-  border-color: #0f172a33 !important;
-  box-shadow: 0 0 0 2px #0f172a20 !important;
-}
-
-html[data-high-contrast="true"] a,
-html[data-high-contrast="true"] button {
-  color: #0f172a;
-}

@@ -7,7 +7,6 @@ import { IntensitySection } from '../components/trends/IntensitySection.jsx';
 import { MoodBreakdown } from '../components/trends/MoodBreakdown.jsx';
 import { StatsGrid } from '../components/trends/StatsGrid.jsx';
 import { TopTags } from '../components/trends/TopTags.jsx';
-import { DataTrustNote } from '../components/DataTrustNote.jsx';
 const TrendsCharts = lazy(() => import('../components/trends/TrendsCharts.jsx').then((m) => ({ default: m.TrendsCharts })));
 import { ViewToggle } from '../components/trends/ViewToggle.jsx';
 import { ExportImportPanel } from '../components/trends/ExportImportPanel.jsx';
@@ -245,11 +244,6 @@ export default function TrendsPage() {
               focusRing={focusRing}
               className="mb-8"
             />
-
-            <div className="mb-8">
-              <DataTrustNote />
-            </div>
-
             {viewMode === 'calendar' ? (
               <CalendarView calendarDays={calendarDays} getMoodEmoji={getMoodEmoji} viewMode={viewMode} />
             ) : filteredEntries.length === 0 ? (

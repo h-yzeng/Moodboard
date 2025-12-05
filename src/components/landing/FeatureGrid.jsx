@@ -1,5 +1,3 @@
-const focusRingDefault = 'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gray-900/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white';
-
 const features = [
   {
     title: 'Quick & Simple',
@@ -21,7 +19,7 @@ const features = [
   }
 ];
 
-export function FeatureGrid({ focusRing = focusRingDefault }) {
+export function FeatureGrid() {
   return (
     <section className="mx-auto max-w-6xl px-3 sm:px-4 pb-16">
       <h3 className="text-3xl font-black text-center text-gray-900 mb-10 drop-shadow-sm animate-fade-up" style={{ animationDelay: '80ms' }}>
@@ -41,15 +39,7 @@ export function FeatureGrid({ focusRing = focusRingDefault }) {
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-3">{feature.title}</h3>
             <p className="mt-3 text-gray-700 font-medium text-base leading-relaxed">{feature.description}</p>
-            <button
-              type="button"
-              className={`mt-6 inline-flex items-center gap-2 text-sm font-semibold text-purple-700 group-hover:text-purple-900 transition-colors ${focusRing}`}
-            >
-              Learn more
-              <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1">
-                →
-              </span>
-            </button>
+            <div className="mt-6 text-sm font-semibold text-purple-800">Focused on what matters.</div>
           </article>
         ))}
       </div>
