@@ -1,5 +1,9 @@
 # MoodBoard 💭
 
+## 🌐 Live Demo
+
+**Try MoodBoard now:** [https://mood-board-tracking-app.vercel.app/](https://mood-board-tracking-app.vercel.app/)
+
 ## 🌟 Project Overview
 
 MoodBoard is a privacy-focused web application that helps users track their emotional well-being through daily mood logging. The application is built with modern web technologies, providing an intuitive and beautiful user interface for recording moods,analyzing patterns, and gaining insights into emotional trends over time.
