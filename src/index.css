@@ -34,12 +34,6 @@ a, button {
   background: linear-gradient(to bottom, #a855f7, #ec4899);
 }
 
-/* Firefox scrollbar */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #c084fc #fce7f3;
-}
-
 /* Page transitions */
 @keyframes fadeIn {
   from {
@@ -231,4 +225,38 @@ input:focus, textarea:focus, select:focus {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
+}
+
+html[data-reduce-motion="true"] * {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
+html[data-text-size="large"] body {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+html[data-high-contrast="true"] {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+html[data-high-contrast="true"] body {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+html[data-high-contrast="true"] .rounded-3xl,
+html[data-high-contrast="true"] .rounded-2xl,
+html[data-high-contrast="true"] .hc-surface {
+  background: #ffffff !important;
+  border-color: #0f172a33 !important;
+  box-shadow: 0 0 0 2px #0f172a20 !important;
+}
+
+html[data-high-contrast="true"] a,
+html[data-high-contrast="true"] button {
+  color: #0f172a;
 }

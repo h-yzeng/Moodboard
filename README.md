@@ -95,36 +95,30 @@ MoodBoard allows users to build self-awareness through consistent emotional chec
 
 ## 🚀 Future Scope
 
-### Feature Enhancements
+### Feature Enhancements (Planned)
 
-1. **Data Export/Import**
-   - Export mood data as JSON or CSV for backup
-   - Import data from other mood tracking apps
-   - Share sanitized mood reports (without personal notes)
-
-2. **Advanced Analytics**
+1. **Advanced Analytics**
    - Machine learning insights: "You tend to feel anxious on Mondays"
    - Correlation analysis: "You feel happier when you exercise"
    - Streak tracking: consecutive days of logging
    - Mood predictions based on historical patterns
 
-3. **Customization Options**
+2. **Customization Options**
    - Custom mood creation with emoji picker
    - Personalized color themes
    - Configurable quick tags
    - Custom intensity scale ranges
 
-4. **Enhanced Visualizations**
-   - Interactive charts (line graphs, pie charts) using Chart.js
+3. **Enhanced Visualizations**
    - Mood heatmaps showing intensity patterns
    - Weekly/monthly mood comparison views
 
-5. **Reminders & Notifications**
+4. **Reminders & Notifications**
    - Daily reminder notifications to log mood
    - Browser push notifications (opt-in)
    - Customizable reminder times
 
-### Technical Improvements
+### Technical Improvements (Planned)
 
 1. **Progressive Web App (PWA)**
    - Service worker for offline functionality
@@ -132,14 +126,7 @@ MoodBoard allows users to build self-awareness through consistent emotional chec
    - Background sync for future cloud features
    - App-like experience on mobile devices
 
-2. **Accessibility Enhancements**
-   - ARIA labels for all interactive elements
-   - Keyboard navigation improvements
-   - Screen reader optimization
-   - High contrast mode option
-   - Font size customization
-
-3. **Integration Features**
+2. **Integration Features**
    - Export to popular journaling apps
    - Calendar integration (Google Calendar, Apple Calendar)
    - Health app integration (Apple Health, Google Fit)

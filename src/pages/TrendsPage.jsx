@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { lazy, Suspense, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CalendarView } from '../components/trends/CalendarView.jsx';
 import { EmptyState } from '../components/trends/EmptyState.jsx';
@@ -7,7 +7,8 @@ import { IntensitySection } from '../components/trends/IntensitySection.jsx';
 import { MoodBreakdown } from '../components/trends/MoodBreakdown.jsx';
 import { StatsGrid } from '../components/trends/StatsGrid.jsx';
 import { TopTags } from '../components/trends/TopTags.jsx';
-import { TrendsCharts } from '../components/trends/TrendsCharts.jsx';
+import { DataTrustNote } from '../components/DataTrustNote.jsx';
+const TrendsCharts = lazy(() => import('../components/trends/TrendsCharts.jsx').then((m) => ({ default: m.TrendsCharts })));
 import { ViewToggle } from '../components/trends/ViewToggle.jsx';
 import { ExportImportPanel } from '../components/trends/ExportImportPanel.jsx';
 import { useMoodEntries } from '../hooks/useMoodEntries.js';
@@ -245,6 +246,10 @@ export default function TrendsPage() {
               className="mb-8"
             />
 
+            <div className="mb-8">
+              <DataTrustNote />
+            </div>
+
             {viewMode === 'calendar' ? (
               <CalendarView calendarDays={calendarDays} getMoodEmoji={getMoodEmoji} viewMode={viewMode} />
             ) : filteredEntries.length === 0 ? (
@@ -260,7 +265,16 @@ export default function TrendsPage() {
                   entries={weeklyEntryCount}
                 />
 
-                <TrendsCharts filteredEntries={filteredEntries} moodStats={moodStats} />
+                <Suspense
+                  fallback={
+                    <div className="rounded-3xl p-6 shadow-xl border-2 border-white/70 animate-fade-in" style={{ background: 'linear-gradient(135deg, #f6f7ff, #fff7fb)' }}>
+                      <p className="text-lg font-bold text-gray-900 mb-2">Loading charts…</p>
+                      <p className="text-sm text-gray-700">Fetching your mood visuals.</p>
+                    </div>
+                  }
+                >
+                  <TrendsCharts filteredEntries={filteredEntries} moodStats={moodStats} />
+                </Suspense>
 
                 <div
                   className="rounded-3xl p-8 shadow-xl border-2 border-white/70 animate-fade-in"

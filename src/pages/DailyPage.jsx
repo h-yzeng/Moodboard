@@ -3,6 +3,7 @@ import { useMoodEntries } from '../hooks/useMoodEntries.js';
 import { SuccessBanner } from '../components/daily/SuccessBanner.jsx';
 import { MoodEntryForm } from '../components/daily/MoodEntryForm.jsx';
 import { HistoryPanel } from '../components/daily/HistoryPanel.jsx';
+import { DataTrustNote } from '../components/DataTrustNote.jsx';
 
 const focusRing = 'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gray-900/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white';
 
@@ -128,6 +129,10 @@ export default function DailyPage() {
           <h2 className="text-4xl md:text-5xl font-black text-gray-900 drop-shadow-md mb-3">How are you feeling today? 💭</h2>
           <p className="text-xl text-gray-700 font-bold mb-2">{getTodaysDate()}</p>
           <p className="text-lg text-gray-700 font-medium">Take a moment to check in with yourself</p>
+        </div>
+
+        <div className="mb-6 px-1">
+          <DataTrustNote />
         </div>
 
         {showSuccess && <SuccessBanner message="✨ Mood logged successfully! Keep it up! ✨" />}

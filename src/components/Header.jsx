@@ -1,4 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
+import { UserPrefsBar } from './UserPrefsBar.jsx';
 
 const focusRing = 'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gray-900/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white';
 
@@ -51,6 +52,8 @@ export default function Header() {
             ))}
           </nav>
         </div>
+
+        <UserPrefsBar />
       </header>
     </>
   );

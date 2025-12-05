@@ -59,6 +59,10 @@ export default function Footer() {
             </a>
           </div>
         </div>
+
+        <div id="privacy-details" className="mt-4 text-xs text-gray-800 font-semibold leading-relaxed">
+          <p>Your entries are stored locally in your browser (localStorage). We do not send your data to any server, and there are no accounts to create.</p>
+        </div>
       </div>
     </footer>
   );
