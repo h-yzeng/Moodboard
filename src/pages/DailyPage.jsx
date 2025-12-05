@@ -174,7 +174,7 @@ export default function DailyPage() {
 
         <div className={`grid grid-cols-1 gap-7 w-full transition-all duration-500 ${showHistory ? 'lg:grid-cols-10' : ''}`}>
           {/* Mood Entry Form */}
-          <div className={`transition-all duration-500 ${showHistory ? 'lg:col-span-7' : 'lg:col-span-1 max-w-5xl mx-auto'}`}>
+          <div className={`transition-all duration-500 ${showHistory ? 'lg:col-span-7' : 'lg:col-span-1 max-w-7xl mx-auto'}`}>
             <div 
               className="rounded-3xl p-8 shadow-xl border-4 border-white/50"
               style={{
