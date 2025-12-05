@@ -1,9 +1,12 @@
-export function IntensitySection({ getMoodEmoji, moodByDay, filteredEntries }) {
+export function IntensitySection({ getMoodEmoji, moodByDay, filteredEntries, variant = 'card' }) {
+  const isEmbedded = variant === 'embedded';
+  const containerClass = isEmbedded
+    ? 'rounded-2xl p-6 bg-white/70 border border-white/60 shadow-sm'
+    : 'rounded-3xl p-8 shadow-xl border-2 border-white/70 animate-fade-in';
+  const containerStyle = isEmbedded ? undefined : { background: 'linear-gradient(135deg, #f3f8ff, #f7f5ff)' };
+
   return (
-    <div
-      className="rounded-3xl p-8 shadow-xl border-2 border-white/70 animate-fade-in"
-      style={{ background: 'linear-gradient(135deg, #f3f8ff, #f7f5ff)' }}
-    >
+    <div className={containerClass} style={containerStyle}>
       <div className="flex justify-between items-center mb-4">
         <div>
           <p className="text-lg font-bold text-gray-900">Intensity by Day</p>
@@ -32,12 +35,12 @@ export function IntensitySection({ getMoodEmoji, moodByDay, filteredEntries }) {
 
           const intensityClass =
             avgIntensity >= 8
-              ? 'bg-gradient-to-b from-red-100 to-orange-200 text-red-800'
+              ? 'bg-red-50 text-red-800 ring-1 ring-red-100'
               : avgIntensity >= 6
-              ? 'bg-gradient-to-b from-orange-100 to-amber-200 text-orange-800'
+              ? 'bg-amber-50 text-amber-800 ring-1 ring-amber-100'
               : avgIntensity >= 4
-              ? 'bg-gradient-to-b from-yellow-100 to-lime-200 text-yellow-800'
-              : 'bg-gradient-to-b from-green-100 to-emerald-200 text-emerald-800';
+              ? 'bg-yellow-50 text-yellow-800 ring-1 ring-yellow-100'
+              : 'bg-emerald-50 text-emerald-800 ring-1 ring-emerald-100';
 
           return (
             <div

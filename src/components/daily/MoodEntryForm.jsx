@@ -30,7 +30,7 @@ export function MoodEntryForm({
         <label className="block text-2xl font-bold text-gray-900 mb-6 text-center" htmlFor="mood-grid">
           Select Your Mood
         </label>
-        <p className="text-center text-sm text-gray-700 mb-4 font-medium">Pick how you feel right now—no wrong answers.</p>
+        <p className="text-center text-sm text-gray-700 mb-4 font-medium">Pick how you feel right now. There are no wrong answers.</p>
         <div id="mood-grid" className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-3 max-w-full" role="radiogroup" aria-label="Mood options">
           {moods.map((mood) => {
             const isSelected = selectedMood === mood.value;

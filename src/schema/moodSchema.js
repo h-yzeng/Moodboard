@@ -9,7 +9,9 @@ const isIsoDate = (value) => {
 export const sanitizeEntry = (entry) => {
   if (!entry || typeof entry !== 'object') return null;
   const { id, mood, rating, tags, note, date } = entry;
-  if (typeof id !== 'string' || typeof mood !== 'string') return null;
+
+  const safeId = typeof id === 'string' ? id : typeof id === 'number' ? String(id) : null;
+  if (!safeId || typeof mood !== 'string') return null;
   const numericRating = Number(rating);
   if (Number.isNaN(numericRating) || numericRating < 1 || numericRating > 10) return null;
   if (!isIsoDate(date)) return null;
@@ -18,7 +20,7 @@ export const sanitizeEntry = (entry) => {
   const safeNote = typeof note === 'string' ? note : '';
 
   return {
-    id,
+    id: safeId,
     mood,
     rating: numericRating,
     tags: safeTags,

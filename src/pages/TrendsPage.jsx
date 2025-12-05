@@ -9,6 +9,7 @@ import { StatsGrid } from '../components/trends/StatsGrid.jsx';
 import { TopTags } from '../components/trends/TopTags.jsx';
 import { TrendsCharts } from '../components/trends/TrendsCharts.jsx';
 import { ViewToggle } from '../components/trends/ViewToggle.jsx';
+import { ExportImportPanel } from '../components/trends/ExportImportPanel.jsx';
 import { useMoodEntries } from '../hooks/useMoodEntries.js';
 
 const focusRing = 'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gray-900/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white';
@@ -68,7 +69,7 @@ const buildCalendarDays = (entries, month, year) => {
 
 export default function TrendsPage() {
   const navigate = useNavigate();
-  const { entries } = useMoodEntries();
+  const { entries, exportEntries, importEntries } = useMoodEntries();
   const [timeRange, setTimeRange] = useState('week');
   const [selectedMood, setSelectedMood] = useState('all');
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
@@ -202,6 +203,14 @@ export default function TrendsPage() {
               </span>
               Log Your First Mood
             </button>
+
+            <div className="mt-8 max-w-3xl mx-auto">
+              <ExportImportPanel
+                onExport={exportEntries}
+                onImport={importEntries}
+                focusRing={focusRing}
+              />
+            </div>
           </div>
         ) : (
           <>
@@ -229,6 +238,13 @@ export default function TrendsPage() {
               focusRing={focusRing}
             />
 
+            <ExportImportPanel
+              onExport={exportEntries}
+              onImport={importEntries}
+              focusRing={focusRing}
+              className="mb-8"
+            />
+
             {viewMode === 'calendar' ? (
               <CalendarView calendarDays={calendarDays} getMoodEmoji={getMoodEmoji} viewMode={viewMode} />
             ) : filteredEntries.length === 0 ? (
@@ -246,11 +262,30 @@ export default function TrendsPage() {
 
                 <TrendsCharts filteredEntries={filteredEntries} moodStats={moodStats} />
 
-                <IntensitySection getMoodEmoji={getMoodEmoji} moodByDay={moodByDay} filteredEntries={filteredEntries} />
+                <div
+                  className="rounded-3xl p-8 shadow-xl border-2 border-white/70 animate-fade-in"
+                  style={{ background: 'linear-gradient(135deg, #f4f7ff, #faf7ff)' }}
+                >
+                  <div className="grid gap-6">
+                    <IntensitySection
+                      getMoodEmoji={getMoodEmoji}
+                      moodByDay={moodByDay}
+                      filteredEntries={filteredEntries}
+                      variant="embedded"
+                    />
 
-                <MoodBreakdown getMoodEmoji={getMoodEmoji} moodPercentage={moodPercentage} moodCounts={moodCounts} />
+                    <div className="grid lg:grid-cols-2 gap-6">
+                      <MoodBreakdown
+                        getMoodEmoji={getMoodEmoji}
+                        moodPercentage={moodPercentage}
+                        moodCounts={moodCounts}
+                        variant="embedded"
+                      />
 
-                <TopTags topTags={topTagsDetailed} />
+                      <TopTags topTags={topTagsDetailed} variant="embedded" />
+                    </div>
+                  </div>
+                </div>
               </>
             )}
           </>

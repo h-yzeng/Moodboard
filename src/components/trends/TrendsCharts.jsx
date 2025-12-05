@@ -92,7 +92,10 @@ export function TrendsCharts({ filteredEntries, moodStats }) {
           <span className="text-sm text-gray-600">Last filter window</span>
         </div>
         {moodBarData.labels.length === 0 ? (
-          <p className="text-sm text-gray-600">No data yet.</p>
+          <div className="text-sm text-gray-700 bg-white/80 border border-dashed border-gray-200 rounded-2xl p-4">
+            <p className="font-semibold">No moods in this view.</p>
+            <p>Adjust the filters or add a new entry to populate this chart.</p>
+          </div>
         ) : (
           <Bar data={moodBarData} options={barOptions} aria-label="Mood counts bar chart" />
         )}
@@ -107,7 +110,10 @@ export function TrendsCharts({ filteredEntries, moodStats }) {
           <span className="text-sm text-gray-600">Rated 1-10</span>
         </div>
         {intensityLineData.labels.length === 0 ? (
-          <p className="text-sm text-gray-600">No data yet.</p>
+          <div className="text-sm text-gray-700 bg-white/80 border border-dashed border-gray-200 rounded-2xl p-4">
+            <p className="font-semibold">No timeline available.</p>
+            <p>Log a mood or widen the date range to see intensity trends.</p>
+          </div>
         ) : (
           <Line data={intensityLineData} options={lineOptions} aria-label="Mood intensity line chart" />
         )}

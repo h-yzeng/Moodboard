@@ -133,7 +133,7 @@ export default function DailyPage() {
         {showSuccess && <SuccessBanner message="✨ Mood logged successfully! Keep it up! ✨" />}
 
         <div className={`grid grid-cols-1 gap-7 w-full transition-all duration-500 ${showHistory ? 'lg:grid-cols-10' : ''}`}>
-          <div className={`transition-all duration-500 ${showHistory ? 'lg:col-span-7' : 'lg:col-span-1 max-w-7xl mx-auto'}`}>
+          <div className={`transition-all duration-500 ${showHistory ? 'lg:col-span-7' : 'lg:col-span-1 max-w-8xl mx-auto'}`}>
             <MoodEntryForm
               moods={moods}
               quickTags={quickTags}

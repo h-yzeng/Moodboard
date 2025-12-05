@@ -1,9 +1,12 @@
-export function MoodBreakdown({ getMoodEmoji, moodPercentage, moodCounts }) {
+export function MoodBreakdown({ getMoodEmoji, moodPercentage, moodCounts, variant = 'card' }) {
+  const isEmbedded = variant === 'embedded';
+  const containerClass = isEmbedded
+    ? 'rounded-2xl p-6 bg-white/70 border border-white/60 shadow-sm h-full'
+    : 'rounded-3xl p-8 shadow-xl border-2 border-white/70 animate-fade-in';
+  const containerStyle = isEmbedded ? undefined : { background: 'linear-gradient(135deg, #f7f4ff, #f0fbff)' };
+
   return (
-    <div
-      className="rounded-3xl p-8 shadow-xl border-2 border-white/70 animate-fade-in"
-      style={{ background: 'linear-gradient(135deg, #f7f4ff, #f0fbff)' }}
-    >
+    <div className={containerClass} style={containerStyle}>
       <p className="text-lg font-bold text-gray-900 mb-4">Mood Breakdown</p>
       <div className="grid md:grid-cols-2 gap-6">
         <div className="space-y-4" aria-label="Mood distribution">
