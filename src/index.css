@@ -81,8 +81,97 @@ a, button {
   }
 }
 
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes floatTilt {
+  0% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+}
+
+@keyframes bounceSoft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulseSoft {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 10px 25px rgba(96, 165, 250, 0.2));
+  }
+  50% {
+    transform: scale(1.04);
+    filter: drop-shadow(0 14px 28px rgba(147, 51, 234, 0.25));
+  }
+}
+
+@keyframes floatDrift {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(6px, -4px);
+  }
+  50% {
+    transform: translate(0, -8px);
+  }
+  75% {
+    transform: translate(-6px, -4px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes bobSoft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease-out;
+  animation-fill-mode: both;
 }
 
 .animate-slide-in {
@@ -97,6 +186,31 @@ a, button {
   animation: pulseGlow 2s ease-in-out infinite;
 }
 
+.animate-gradient-slow {
+  background-size: 200% 200%;
+  animation: gradientShift 12s ease-in-out infinite;
+}
+
+.animate-float-tilt {
+  animation: floatTilt 6s ease-in-out infinite;
+}
+
+.animate-bounce-soft {
+  animation: bounceSoft 2.2s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulseSoft 2.4s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: floatDrift 5s ease-in-out infinite;
+}
+
+.animate-bob-soft {
+  animation: bobSoft 2.6s ease-in-out infinite;
+}
+
 /* Enhance button feedback */
 button:active {
   transform: scale(0.95);
@@ -109,4 +223,12 @@ input, textarea, select {
 
 input:focus, textarea:focus, select:focus {
   transform: scale(1.01);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }

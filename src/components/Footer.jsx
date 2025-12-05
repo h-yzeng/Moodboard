@@ -18,10 +18,11 @@ export default function Footer() {
     >
       <div className="mx-auto max-w-6xl px-4 py-6">
         {/* Affirmation */}
-        <div className="text-center mb-4">
-          <p className="text-sm font-bold text-purple-800 italic">
-            {randomAffirmation}
-          </p>
+        <div className="text-center mb-4 flex justify-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-purple-200 shadow-sm">
+            <span className="w-1 h-6 bg-purple-300 rounded-full" aria-hidden="true" />
+            <p className="text-sm font-bold text-purple-800 italic">{randomAffirmation}</p>
+          </div>
         </div>
 
         {/* Privacy & Links */}
