@@ -24,7 +24,7 @@ export function IntensitySection({ getMoodEmoji, moodByDay, filteredEntries, var
         </div>
       </div>
 
-      <div className="grid grid-cols-7 gap-3 text-center" aria-live="polite">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-2 sm:gap-3 text-center" aria-live="polite">
         {Object.entries(moodByDay).map(([day, entries]) => {
           const avgIntensity = Math.round(entries.reduce((sum, e) => sum + e.rating, 0) / entries.length);
           const moodIcons = entries.slice(0, 3).map((entry, idx) => (

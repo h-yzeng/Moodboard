@@ -109,11 +109,7 @@ MoodBoard allows users to build self-awareness through consistent emotional chec
    - Configurable quick tags
    - Custom intensity scale ranges
 
-3. **Enhanced Visualizations**
-   - Mood heatmaps showing intensity patterns
-   - Weekly/monthly mood comparison views
-
-4. **Reminders & Notifications**
+3. **Reminders & Notifications**
    - Daily reminder notifications to log mood
    - Browser push notifications (opt-in)
    - Customizable reminder times

@@ -3,33 +3,7 @@ import { useMoodEntries } from '../hooks/useMoodEntries.js';
 import { SuccessBanner } from '../components/daily/SuccessBanner.jsx';
 import { MoodEntryForm } from '../components/daily/MoodEntryForm.jsx';
 import { HistoryPanel } from '../components/daily/HistoryPanel.jsx';
-
-const focusRing = 'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gray-900/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white';
-
-const moods = [
-  { emoji: '😊', label: 'Happy', value: 'happy', color: '#FFD6A5' },
-  { emoji: '😢', label: 'Sad', value: 'sad', color: '#A0C4FF' },
-  { emoji: '😐', label: 'Neutral', value: 'neutral', color: '#E5E7EB' },
-  { emoji: '😡', label: 'Angry', value: 'angry', color: '#FFC6FF' },
-  { emoji: '😎', label: 'Cool', value: 'cool', color: '#BDB2FF' },
-  { emoji: '😴', label: 'Sleepy', value: 'sleepy', color: '#D8B4FE' },
-  { emoji: '😰', label: 'Anxious', value: 'anxious', color: '#FBCFE8' },
-  { emoji: '🥳', label: 'Excited', value: 'excited', color: '#FDE047' },
-  { emoji: '😭', label: 'Crying', value: 'crying', color: '#BAE6FD' },
-  { emoji: '🤗', label: 'Grateful', value: 'grateful', color: '#FED7AA' },
-  { emoji: '😤', label: 'Frustrated', value: 'frustrated', color: '#FECACA' },
-  { emoji: '😌', label: 'Peaceful', value: 'peaceful', color: '#BBF7D0' },
-  { emoji: '🤔', label: 'Thoughtful', value: 'thoughtful', color: '#E9D5FF' },
-  { emoji: '😩', label: 'Tired', value: 'tired', color: '#D1D5DB' },
-  { emoji: '🥰', label: 'Loved', value: 'loved', color: '#FBCFE8' },
-  { emoji: '😬', label: 'Nervous', value: 'nervous', color: '#FEF3C7' },
-  { emoji: '🤩', label: 'Amazed', value: 'amazed', color: '#A7F3D0' },
-  { emoji: '😔', label: 'Disappointed', value: 'disappointed', color: '#CBD5E1' },
-  { emoji: '😌', label: 'Content', value: 'content', color: '#D9F99D' },
-  { emoji: '😵', label: 'Overwhelmed', value: 'overwhelmed', color: '#FCA5A5' },
-];
-
-const quickTags = ['Work', 'Family', 'Friends', 'Exercise', 'Health', 'Sleep', 'Hobby', 'Study'];
+import { MOODS, QUICK_TAGS, FOCUS_RING, getMoodEmoji, getMoodColor } from '../constants/moods.js';
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -58,9 +32,6 @@ const getTimeOfDay = () => {
   if (hour < 21) return '🌆 Good Evening';
   return '🌙 Good Night';
 };
-
-const getMoodEmoji = (mood) => moods.find((m) => m.value === mood)?.emoji ?? '😐';
-const getMoodColor = (mood) => moods.find((m) => m.value === mood)?.color ?? '#E5E7EB';
 
 export default function DailyPage() {
   const { entries, addEntry, deleteEntry } = useMoodEntries();
@@ -136,9 +107,9 @@ export default function DailyPage() {
         <div className={`grid grid-cols-1 gap-7 w-full transition-all duration-500 ${showHistory ? 'lg:grid-cols-10' : ''}`}>
           <div className={`transition-all duration-500 ${showHistory ? 'lg:col-span-7' : 'lg:col-span-1 max-w-8xl mx-auto'}`}>
             <MoodEntryForm
-              moods={moods}
-              quickTags={quickTags}
-              focusRing={focusRing}
+              moods={MOODS}
+              quickTags={QUICK_TAGS}
+              focusRing={FOCUS_RING}
               selectedMood={selectedMood}
               onMoodSelect={setSelectedMood}
               rating={rating}
@@ -173,7 +144,7 @@ export default function DailyPage() {
             formatTime={formatTime}
             getMoodEmoji={getMoodEmoji}
             getMoodColor={getMoodColor}
-            focusRing={focusRing}
+            focusRing={FOCUS_RING}
           />
         </div>
       </section>

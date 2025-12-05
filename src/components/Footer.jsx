@@ -42,6 +42,7 @@ export default function Footer() {
                 href="https://github.com/h-yzeng/moodboard"
                 target="_blank" 
                 rel="noreferrer"
+                aria-label="View source code on GitHub (opens in new tab)"
               >
                 GitHub
               </a>
@@ -54,6 +55,7 @@ export default function Footer() {
               target="_blank" 
               rel="noreferrer"
               className="text-gray-800 hover:text-purple-700 font-semibold underline transition-colors"
+              aria-label="Get mental health support at 988 Suicide and Crisis Lifeline (opens in new tab)"
             >
               Need support? 988 Lifeline
             </a>

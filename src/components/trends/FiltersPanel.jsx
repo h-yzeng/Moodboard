@@ -1,4 +1,4 @@
-const focusRingDefault = 'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gray-900/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white';
+import { getYearOptions, FOCUS_RING } from '../../constants/moods.js';
 
 export function FiltersPanel({
   showFilters,
@@ -13,7 +13,7 @@ export function FiltersPanel({
   selectedYear,
   setSelectedYear,
   setShowFilters,
-  focusRing = focusRingDefault
+  focusRing = FOCUS_RING
 }) {
   if (!showFilters) return null;
 
@@ -86,7 +86,7 @@ export function FiltersPanel({
                   onChange={(event) => setSelectedYear(Number(event.target.value))}
                   className={`mt-1 px-3 py-2 rounded-full bg-white border-2 border-blue-200 font-semibold text-gray-900 ${focusRing}`}
                 >
-                  {[2024, 2025, 2026, 2027].map((year) => (
+                  {getYearOptions().map((year) => (
                     <option key={year} value={year}>
                       {year}
                     </option>

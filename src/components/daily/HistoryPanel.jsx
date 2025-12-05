@@ -1,4 +1,4 @@
-const focusRingDefault = 'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gray-900/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white';
+import { FOCUS_RING } from '../../constants/moods.js';
 
 export function HistoryPanel({
   isVisible,
@@ -12,7 +12,7 @@ export function HistoryPanel({
   formatTime,
   getMoodEmoji,
   getMoodColor,
-  focusRing = focusRingDefault,
+  focusRing = FOCUS_RING,
 }) {
   const displayedEntries = viewMode === 'recent' ? entries.slice(0, 5) : entries;
 

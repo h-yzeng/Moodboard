@@ -7,39 +7,16 @@ import { IntensitySection } from '../components/trends/IntensitySection.jsx';
 import { MoodBreakdown } from '../components/trends/MoodBreakdown.jsx';
 import { StatsGrid } from '../components/trends/StatsGrid.jsx';
 import { TopTags } from '../components/trends/TopTags.jsx';
+import { MoodHeatmap } from '../components/trends/MoodHeatmap.jsx';
+import { MoodComparison } from '../components/trends/MoodComparison.jsx';
 const TrendsCharts = lazy(() => import('../components/trends/TrendsCharts.jsx').then((m) => ({ default: m.TrendsCharts })));
 import { ViewToggle } from '../components/trends/ViewToggle.jsx';
 import { ExportImportPanel } from '../components/trends/ExportImportPanel.jsx';
 import { useMoodEntries } from '../hooks/useMoodEntries.js';
-
-const focusRing = 'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gray-900/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white';
-
-const moods = [
-  { emoji: '😊', label: 'Happy', value: 'happy', color: '#FFD6A5' },
-  { emoji: '😢', label: 'Sad', value: 'sad', color: '#A0C4FF' },
-  { emoji: '😐', label: 'Neutral', value: 'neutral', color: '#E5E7EB' },
-  { emoji: '😡', label: 'Angry', value: 'angry', color: '#FFC6FF' },
-  { emoji: '😎', label: 'Cool', value: 'cool', color: '#BDB2FF' },
-  { emoji: '😴', label: 'Sleepy', value: 'sleepy', color: '#D8B4FE' },
-  { emoji: '😰', label: 'Anxious', value: 'anxious', color: '#FBCFE8' },
-  { emoji: '🥳', label: 'Excited', value: 'excited', color: '#FDE047' },
-  { emoji: '😭', label: 'Crying', value: 'crying', color: '#BAE6FD' },
-  { emoji: '🤗', label: 'Grateful', value: 'grateful', color: '#FED7AA' },
-  { emoji: '😤', label: 'Frustrated', value: 'frustrated', color: '#FECACA' },
-  { emoji: '😌', label: 'Peaceful', value: 'peaceful', color: '#BBF7D0' },
-  { emoji: '🤔', label: 'Thoughtful', value: 'thoughtful', color: '#E9D5FF' },
-  { emoji: '😩', label: 'Tired', value: 'tired', color: '#D1D5DB' },
-  { emoji: '🥰', label: 'Loved', value: 'loved', color: '#FBCFE8' },
-  { emoji: '😬', label: 'Nervous', value: 'nervous', color: '#FEF3C7' },
-  { emoji: '🤩', label: 'Amazed', value: 'amazed', color: '#A7F3D0' },
-  { emoji: '😔', label: 'Disappointed', value: 'disappointed', color: '#CBD5E1' },
-  { emoji: '😌', label: 'Content', value: 'content', color: '#D9F99D' },
-  { emoji: '😵', label: 'Overwhelmed', value: 'overwhelmed', color: '#FCA5A5' },
-];
+import { MOODS, FOCUS_RING, getMoodEmoji } from '../constants/moods.js';
+import { TrendsContentSkeleton, CalendarViewSkeleton } from '../components/ui/Skeletons.jsx';
 
 const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-const getMoodEmoji = (mood) => moods.find((m) => m.value === mood)?.emoji ?? '😐';
 
 const buildCalendarDays = (entries, month, year) => {
   const firstDay = new Date(year, month, 1);
@@ -195,7 +172,7 @@ export default function TrendsPage() {
             <button
               type="button"
               onClick={() => navigate('/daily')}
-              className={`inline-flex items-center gap-2 px-8 py-4 rounded-full text-white text-lg font-bold shadow-lg hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 ${focusRing}`}
+              className={`inline-flex items-center gap-2 px-8 py-4 rounded-full text-white text-lg font-bold shadow-lg hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 ${FOCUS_RING}`}
               style={{ background: 'linear-gradient(to right, #c084fc, #f472b6)' }}
             >
               <span aria-hidden="true" className="text-xl">
@@ -208,7 +185,7 @@ export default function TrendsPage() {
               <ExportImportPanel
                 onExport={exportEntries}
                 onImport={importEntries}
-                focusRing={focusRing}
+                focusRing={FOCUS_RING}
               />
             </div>
           </div>
@@ -219,7 +196,7 @@ export default function TrendsPage() {
               setViewMode={setViewMode}
               showFilters={showFilters}
               setShowFilters={setShowFilters}
-              focusRing={focusRing}
+              focusRing={FOCUS_RING}
             />
 
             <FiltersPanel
@@ -227,7 +204,7 @@ export default function TrendsPage() {
               timeRanges={timeRanges}
               selectedRange={timeRange}
               setSelectedRange={setTimeRange}
-              moods={[{ value: 'all', label: 'All Moods' }, ...moods]}
+              moods={[{ value: 'all', label: 'All Moods' }, ...MOODS]}
               selectedMood={selectedMood}
               setSelectedMood={setSelectedMood}
               selectedMonth={selectedMonth}
@@ -235,17 +212,32 @@ export default function TrendsPage() {
               selectedYear={selectedYear}
               setSelectedYear={setSelectedYear}
               setShowFilters={setShowFilters}
-              focusRing={focusRing}
+              focusRing={FOCUS_RING}
             />
 
             <ExportImportPanel
               onExport={exportEntries}
               onImport={importEntries}
-              focusRing={focusRing}
+              focusRing={FOCUS_RING}
               className="mb-8"
             />
             {viewMode === 'calendar' ? (
               <CalendarView calendarDays={calendarDays} getMoodEmoji={getMoodEmoji} viewMode={viewMode} />
+            ) : viewMode === 'heatmap' ? (
+              entries.length === 0 ? (
+                <EmptyState viewMode={viewMode} />
+              ) : (
+                <MoodHeatmap entries={entries} timeRange={timeRange} getMoodEmoji={getMoodEmoji} />
+              )
+            ) : viewMode === 'compare' ? (
+              entries.length === 0 ? (
+                <EmptyState viewMode={viewMode} />
+              ) : (
+                <div className="space-y-6">
+                  <MoodComparison entries={entries} comparisonType="weekly" />
+                  <MoodComparison entries={entries} comparisonType="monthly" />
+                </div>
+              )
             ) : filteredEntries.length === 0 ? (
               <EmptyState viewMode={viewMode} />
             ) : (
@@ -262,8 +254,13 @@ export default function TrendsPage() {
                 <Suspense
                   fallback={
                     <div className="rounded-3xl p-6 shadow-xl border-2 border-white/70 animate-fade-in" style={{ background: 'linear-gradient(135deg, #f6f7ff, #fff7fb)' }}>
-                      <p className="text-lg font-bold text-gray-900 mb-2">Loading charts…</p>
-                      <p className="text-sm text-gray-700">Fetching your mood visuals.</p>
+                      <div className="flex items-center gap-3">
+                        <div className="w-6 h-6 border-2 border-purple-400 border-t-transparent rounded-full animate-spin" />
+                        <div>
+                          <p className="text-lg font-bold text-gray-900">Loading charts…</p>
+                          <p className="text-sm text-gray-600">Fetching your mood visuals.</p>
+                        </div>
+                      </div>
                     </div>
                   }
                 >

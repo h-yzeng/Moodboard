@@ -1,9 +1,9 @@
-const focusRingDefault = 'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gray-900/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white';
+import { FOCUS_RING } from '../../constants/moods.js';
 
 export function MoodEntryForm({
   moods,
   quickTags,
-  focusRing = focusRingDefault,
+  focusRing = FOCUS_RING,
   selectedMood,
   onMoodSelect,
   rating,
