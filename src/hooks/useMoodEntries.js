@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
+import { parsePayload, sanitizeEntry, serializePayload } from '../schema/moodSchema.js';
 
-const STORAGE_KEY = 'moodEntries';
+const STORAGE_KEY = 'moodEntriesV1';
 
 const sortEntries = (entries = []) =>
   [...entries].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -12,8 +13,9 @@ const readStoredEntries = () => {
 
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    const parsed = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed) ? parsed : [];
+    const parsed = raw ? JSON.parse(raw) : null;
+    const payload = parsePayload(parsed);
+    return sortEntries(payload.entries);
   } catch (error) {
     console.error('Unable to read mood entries', error);
     return [];
@@ -30,7 +32,7 @@ export function useMoodEntries() {
 
       if (typeof window !== 'undefined') {
         try {
-          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(sorted));
+          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(serializePayload(sorted)));
         } catch (error) {
           console.error('Unable to save mood entries', error);
         }
@@ -50,7 +52,9 @@ export function useMoodEntries() {
 
   const addEntry = useCallback(
     (entry) => {
-      persist((prev) => [...prev, entry]);
+      const cleanEntry = sanitizeEntry(entry);
+      if (!cleanEntry) return;
+      persist((prev) => [...prev, cleanEntry]);
     },
     [persist],
   );
@@ -62,5 +66,17 @@ export function useMoodEntries() {
     [persist],
   );
 
-  return { entries, addEntry, deleteEntry, reload };
+  const exportEntries = useCallback(() => serializePayload(entries), [entries]);
+
+  const importEntries = useCallback(
+    (payload) => {
+      const parsed = parsePayload(payload);
+      const cleaned = sortEntries(parsed.entries);
+      persist(cleaned);
+      return cleaned.length;
+    },
+    [persist],
+  );
+
+  return { entries, addEntry, deleteEntry, reload, exportEntries, importEntries };
 }
