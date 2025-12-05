@@ -6,7 +6,7 @@ MoodBoard is a privacy-focused web application that helps users track their emot
 
 MoodBoard allows users to build self-awareness through consistent emotional check-ins. The application features:
 
-- **100% Private**: All data is stored locally in your browser - no servers, no accounts, complete privacy
+- **100% Private Data**: All data is stored locally in your browser - no servers, no accounts, complete privacy
 - **Responsive Design**: Beautiful gradient UI that works seamlessly across all devices
 
 ### Key Features
@@ -43,7 +43,6 @@ MoodBoard allows users to build self-awareness through consistent emotional chec
 
 - **Tailwind CSS 4.1.16**: Utility-first CSS framework for rapid UI development
 - **CSS3 Animations**: Custom keyframe animations for smooth transitions
-- **Gradient Backgrounds**: Beautiful multi-color gradients throughout the UI
 
 ### State Management
 
